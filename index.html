@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>news-point</title>
+        <link href="./src/output.css" rel="stylesheet">
+        <link href="./src/index.css" rel="stylesheet">
+    </head>
+
+    <body class="overflow-hidden ">
+        <div class="container w-screen h-screen bg-amber-200 ">
+
+            <!-- nav section -->
+            <nav class="w-full h-[10%] bg-blue-600 p-4 mb-[2%] ">
+                <div class="flex justify-between items-center">
+                    <!-- Logo Section -->
+                    <div class="text-white text-xl font-bold cursor-pointer">MyLogo</div>
+
+                    <!-- Nav Button Section -->
+                    <div class="flex space-x-7 nav-items">
+                        <div data-value="business"
+                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
+                            business
+                        </div>
+                        <div data-value="entertainment"
+                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
+                            entertainment
+                        </div>
+                        <div data-value="science"
+                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
+                            science
+                        </div>
+                        <div data-value="sports"
+                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
+                            sports
+                        </div>
+                        <div data-value="technology"
+                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
+                            technology
+                        </div>
+                        <div data-value="general"
+                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
+                            general
+                        </div>
+                        <div data-value="health"
+                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
+                            health
+                        </div>
+                    </div>
+
+                    <!-- Search Section -->
+                    <div class="relative nav-search">
+                        <input type="text" class="p-2 rounded-full outline-none" placeholder="Search..." />
+                    </div>
+                </div>
+            </nav>
+
+            <!-- card section  -->
+            <div class="h-[78%] overflow-y-scroll overflow-x-hidden">
+                <div class="card">
+                    <h1 class="news-title relative xl:left-24 left-16 mb-4 text-xl font-bold">general news !!</h1>
+                    <div id="card-container" class="flex justify-center flex-wrap gap-6">
+                        <div
+                            class="card bg-white p-4 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105">
+                            <img src="https://via.placeholder.com/300" alt="Card Image"
+                                class="w-full h-48 object-cover mb-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-gray-800">Card Title</h3>
+                            <p class="text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <button
+                                class=" cursor-pointer w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">Learn
+                                More</button>
+                        </div>
+
+                    </div>
+                    <!-- Pagination buttons -->
+                    <div class="flex justify-center items-center space-x-16 my-10">
+                        <button id="prevBtn"
+                            class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 transition cursor-pointer">
+                            Previous
+                        </button>
+                        <span id="pageNumber" class="text-lg font-semibold"></span>
+                        <button id="nextBtn"
+                            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition cursor-pointer">
+                            Next
+                            <button>
+                    </div>
+                </div>
+
+                <div id="full-news-container" class="w-[90%] mx-auto mt-10 hidden"></div>
+            </div>
+
+            <!-- footer section -->
+            <div class="footer h-[9%] bg-gray-800 flex justify-center">
+                <h1 class=" relative top-5 text-lg text-white ">-----power by @RAVI KARAN------- </h1>
+            </div>
+        </div>
+        <script src="./script/index.js"></script>
+    </body>
+
+</html>
