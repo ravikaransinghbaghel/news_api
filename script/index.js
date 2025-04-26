@@ -2,6 +2,7 @@ const pageNumber = document.getElementById('pageNumber');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const nav_item = document.querySelectorAll('.nav-item');
+const news_type = document.querySelector('.news-type');
 
 
 let currentPage = 1;
@@ -23,7 +24,7 @@ nav_item.forEach((item) => {
 })
 
 
-function createCard(item,index) {
+function createCard(item, index) {
     return `
        <div
               class="card bg-white p-4 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105">
@@ -93,6 +94,7 @@ async function fetchData(page, categary) {
         });
 
         pageNumber.textContent = `Page ${page}`;
+        news_type.innerHTML = `${categary} news !! `
 
         // document.querySelectorAll('.full-news-btn').forEach(btn => {
         //     btn.addEventListener('click', (e) => {
@@ -126,4 +128,4 @@ nextBtn.addEventListener('click', () => {
 
 fetchData(currentPage, categary);
 
-setInterval(fetchData(currentPage, categary),500000)
+setInterval(fetchData(currentPage, categary), 500000)
