@@ -41,8 +41,8 @@ function createCard(item, index) {
 
 
 function showFullNews(item) {
-    const fullNewsContainer = document.getElementById('full-news-container');
-    fullNewsContainer.innerHTML = `
+  const fullNewsContainer = document.getElementById('full-news-container');
+  fullNewsContainer.innerHTML = `
     <div class="w-full bg-white p-6 rounded-xl shadow-lg">
       <div class="flex flex-col lg:flex-row gap-7">
         <img src="${item.urlToImage || 'https://via.placeholder.com/400x200?text=No+Image'}"
@@ -61,8 +61,8 @@ function showFullNews(item) {
       </div>
     </div>
   `;
-    fullNewsContainer.classList.remove('hidden');
-    fullNewsContainer.scrollIntoView({ behavior: 'smooth' });
+  fullNewsContainer.classList.remove('hidden');
+  fullNewsContainer.scrollIntoView({ behavior: 'smooth' });
 }
 
 
@@ -79,7 +79,7 @@ async function fetchData(page, categary) {
         // Limit to 8 cards max
         const limitedData = data.results.slice(start, limit);
         // console.log(limitedData.length);
-        let globalArticles = [];
+        let globalArticles=[];
         globalArticles = limitedData;
 
         limitedData.forEach(item => {
@@ -99,12 +99,10 @@ async function fetchData(page, categary) {
 
         document.querySelectorAll('.full-news-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const index = e.target.dataset.index;
-                showFullNews(globalArticles[index]);
-                console.log(globalArticles[index]);
-                
+              const index = e.target.dataset.index;
+              showFullNews(globalArticles[index]);
             });
-        });
+          });
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -131,12 +129,4 @@ nextBtn.addEventListener('click', () => {
 
 fetchData(currentPage, categary);
 
-setInterval(() => fetchData(currentPage, categary), 500*60);
-
-
-const menuToggle = document.getElementById('menu-toggle');
-const navLinks = document.getElementById('nav-links');
-
-menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('hidden');
-});
+setInterval(fetchData(currentPage, categary), 500000)
