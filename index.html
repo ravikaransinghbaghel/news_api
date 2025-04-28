@@ -16,60 +16,41 @@
         <div class="container w-screen h-screen bg-amber-200 ">
 
             <!-- nav section -->
-            <nav class="w-full h-[10%] bg-blue-600 p-4 mb-[2%] ">
+            <nav class="w-full h-[10%] bg-blue-600 p-4 relative">
                 <div class="flex justify-between items-center">
-                    <!-- Logo Section -->
-                    <div class="text-white text-xl font-bold cursor-pointer">MyLogo</div>
-
-                    <!-- Nav Button Section -->
-                    <div class="flex space-x-7 nav-items">
-                        <div data-value="top"
-                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
-                            TOP
-                        </div>
-                        <div data-value="business"
-                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
-                            business
-                        </div>
-                        <div data-value="entertainment"
-                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
-                            entertainment
-                        </div>
-                        <div data-value="food"
-                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
-                            food
-                        </div>
-                        <div data-value="science"
-                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
-                            science
-                        </div>
-                        <div data-value="sports"
-                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
-                            sports
-                        </div>
-                        <div data-value="technology"
-                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
-                            technology
-                        </div>
-                        <div data-value="politics"
-                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
-                            politics
-                        </div>
-                        <div data-value="health"
-                            class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
-                            health
-                        </div>
-                    </div>
-
-                    <!-- Search Section -->
-                    <div class="relative nav-search">
-                        <input type="text" class="p-2 rounded-full outline-none" placeholder="Search..." />
-                    </div>
+                  <!-- Logo -->
+                  <div class="flex items-center">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPqEEI_x50vlET-ur5DsLdnNmprdM-L9HTUw&s" alt="Logo" style="width: 52px;" class="rounded-full object-cover">
+                  </div>
+              
+                  <!-- Menu button (visible only on mobile) -->
+                  <div class="block md:hidden">
+                    <button id="menu-toggle" class="text-white text-3xl focus:outline-none">☰</button>
+                  </div>
+              
+                  <!-- Nav items (Desktop view) -->
+                  <div id="nav-links" class="hidden md:flex space-x-6 absolute md:static top-16 left-0 w-full md:w-auto bg-blue-600 md:bg-transparent flex-col md:flex-row text-center md:text-left">
+                    <div class="text-white cursor-pointer nav-item" data-value="top">Top</div>
+                    <div class="text-white cursor-pointer nav-item" data-value="business">Business</div>
+                    <div class="text-white cursor-pointer nav-item" data-value="entertainment">Entertainment</div>
+                    <div class="text-white cursor-pointer nav-item" data-value="food">Food</div>
+                    <div class="text-white cursor-pointer nav-item" data-value="science">Science</div>
+                    <div class="text-white cursor-pointer nav-item" data-value="sports">Sports</div>
+                    <div class="text-white cursor-pointer nav-item" data-value="technology">Technology</div>
+                    <div class="text-white cursor-pointer nav-item" data-value="politics">Politics</div>
+                    <div class="text-white cursor-pointer nav-item" data-value="health">Health</div>
+                  </div>
+              
+                  <!-- Search (right) -->
+                  <div class="hidden md:block relative">
+                    <input type="text" class="p-2 rounded-full outline-none" placeholder="Search...">
+                  </div>
                 </div>
-            </nav>
+              </nav>
+              
 
             <!-- card section  -->
-            <div class="h-[78%] overflow-y-scroll overflow-x-hidden">
+            <div class="h-[81%] overflow-y-scroll overflow-x-hidden">
                 <div class="card">
                     <h1 class="news-type relative xl:left-24 left-16 mb-4 text-xl font-bold">general news !!</h1>
                     <div id="card-container" class="flex justify-center flex-wrap gap-6">

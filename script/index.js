@@ -40,30 +40,30 @@ function createCard(item, index) {
 }
 
 
-// function showFullNews(item) {
-//   const fullNewsContainer = document.getElementById('full-news-container');
-//   fullNewsContainer.innerHTML = `
-//     <div class="w-full bg-white p-6 rounded-xl shadow-lg">
-//       <div class="flex flex-col lg:flex-row gap-7">
-//         <img src="${item.urlToImage || 'https://via.placeholder.com/400x200?text=No+Image'}"
-//              alt="Card Image"
-//              class="lg:w-[75%] lg:h-64 object-cover mb-4 rounded-lg">
-//         <div class="title">
-//           <h3 class="text-2xl font-semibold text-gray-800 mb-4">${item.title || 'No Title'}</h3>
-//           <div class="auth flex gap-5 text-sm text-gray-600">
-//             <span>👤 ${item.author || 'Unknown Author'}</span>
-//             <span>📅 ${item.publishedAt ? new Date(item.publishedAt).toLocaleDateString() : 'No Date'}</span>
-//           </div>
-//         </div>
-//       </div>
-//       <div class="content text-gray-700 mt-6 text-lg leading-relaxed">
-//         ${item.content || item.description || 'No content available.'}
-//       </div>
-//     </div>
-//   `;
-//   fullNewsContainer.classList.remove('hidden');
-//   fullNewsContainer.scrollIntoView({ behavior: 'smooth' });
-// }
+function showFullNews(item) {
+    const fullNewsContainer = document.getElementById('full-news-container');
+    fullNewsContainer.innerHTML = `
+    <div class="w-full bg-white p-6 rounded-xl shadow-lg">
+      <div class="flex flex-col lg:flex-row gap-7">
+        <img src="${item.urlToImage || 'https://via.placeholder.com/400x200?text=No+Image'}"
+             alt="Card Image"
+             class="lg:w-[75%] lg:h-64 object-cover mb-4 rounded-lg">
+        <div class="title">
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">${item.title || 'No Title'}</h3>
+          <div class="auth flex gap-5 text-sm text-gray-600">
+            <span>👤 ${item.author || 'Unknown Author'}</span>
+            <span>📅 ${item.publishedAt ? new Date(item.publishedAt).toLocaleDateString() : 'No Date'}</span>
+          </div>
+        </div>
+      </div>
+      <div class="content text-gray-700 mt-6 text-lg leading-relaxed">
+        ${item.content || item.description || 'No content available.'}
+      </div>
+    </div>
+  `;
+    fullNewsContainer.classList.remove('hidden');
+    fullNewsContainer.scrollIntoView({ behavior: 'smooth' });
+}
 
 
 
@@ -79,7 +79,8 @@ async function fetchData(page, categary) {
         // Limit to 8 cards max
         const limitedData = data.results.slice(start, limit);
         // console.log(limitedData.length);
-        // globalArticles = limitedData;
+        let globalArticles = [];
+        globalArticles = limitedData;
 
         limitedData.forEach(item => {
             const cardHTML = createCard({
@@ -96,12 +97,14 @@ async function fetchData(page, categary) {
         pageNumber.textContent = `Page ${page}`;
         news_type.innerHTML = `${categary} news !! `
 
-        // document.querySelectorAll('.full-news-btn').forEach(btn => {
-        //     btn.addEventListener('click', (e) => {
-        //       const index = e.target.dataset.index;
-        //       showFullNews(globalArticles[index]);
-        //     });
-        //   });
+        document.querySelectorAll('.full-news-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const index = e.target.dataset.index;
+                showFullNews(globalArticles[index]);
+                console.log(globalArticles[index]);
+                
+            });
+        });
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -128,4 +131,12 @@ nextBtn.addEventListener('click', () => {
 
 fetchData(currentPage, categary);
 
-setInterval(fetchData(currentPage, categary), 500000)
+setInterval(() => fetchData(currentPage, categary), 500*60);
+
+
+const menuToggle = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+
+menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('hidden');
+});
