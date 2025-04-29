@@ -134,10 +134,15 @@
 
         <script>
             // Toggle the mobile navigation menu
+            const mobileNav = document.querySelector('.mobile-nav');
             function toggleMobileNav() {
-                const mobileNav = document.querySelector('.mobile-nav');
-                mobileNav.classList.toggle('hidden');
+                mobileNav.classList.remove('hidden');
             }
+            document.querySelectorAll('.nav-item').forEach((e) => {
+                e.addEventListener('click', () => {
+                    mobileNav.classList.add('hidden');
+                })
+            })
         </script>
     </body>
 
