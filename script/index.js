@@ -12,20 +12,20 @@ let categary = 'top';
 let globalArticles = [];
 
 nav_item.forEach((item) => {
-    item.addEventListener('click', () => {
-        // console.log('Clicked item index:', index);
-        // console.log('value:', item.dataset.value);
-        categary = item.dataset.value;
-        currentPage = 1;
-        start = 0;
-        limit = 8;
-        fetchData(currentPage, categary)
-    })
+  item.addEventListener('click', () => {
+    // console.log('Clicked item index:', index);
+    // console.log('value:', item.dataset.value);
+    categary = item.dataset.value;
+    currentPage = 1;
+    start = 0;
+    limit = 8;
+    fetchData(currentPage, categary)
+  })
 })
 
 
 function createCard(item, index) {
-    return `
+  return `
        <div
               class="card bg-white p-4 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105">
               <img src="${item.image_url}" alt="Card Image"
@@ -45,7 +45,7 @@ function showFullNews(item) {
   fullNewsContainer.innerHTML = `
     <div class="w-full bg-white p-6 rounded-xl shadow-lg">
       <div class="flex flex-col lg:flex-row gap-7">
-        <img src="${item.urlToImage || 'https://via.placeholder.com/400x200?text=No+Image'}"
+        <img src="${item.image_url || 'https://via.placeholder.com/400x200?text=No+Image'}"
              alt="Card Image"
              class="lg:w-[75%] lg:h-64 object-cover mb-4 rounded-lg">
         <div class="title">
@@ -68,65 +68,68 @@ function showFullNews(item) {
 
 
 async function fetchData(page, categary) {
-    try {
+  try {
 
-        const response = await fetch(`https://newsdata.io/api/1/news?apikey=pub_82970d979a51bd670ff1229a01519c5d5df4d&country=in&language=en&category=${categary}`);
-        const data = await response.json();
-        const cardContainer = document.getElementById('card-container');
-        console.log(data.results);
+    const response = await fetch(`https://newsdata.io/api/1/news?apikey=pub_82970d979a51bd670ff1229a01519c5d5df4d&country=in&language=en&category=${categary}`);
+    const data = await response.json();
+    const cardContainer = document.getElementById('card-container');
+    console.log(data.results);
 
-        cardContainer.innerHTML = "";
-        // Limit to 8 cards max
-        const limitedData = data.results.slice(start, limit);
-        // console.log(limitedData.length);
-        let globalArticles=[];
-        globalArticles = limitedData;
+    cardContainer.innerHTML = "";
+    // Limit to 8 cards max
+    const limitedData = data.results.slice(start, limit);
+    // console.log(limitedData.length);
+    let globalArticles = [];
+    
+    globalArticles = limitedData;
 
-        limitedData.forEach(item => {
-            const cardHTML = createCard({
-                image_url: item.image_url,
-                title: item.title.slice(0, 40) + '...',
-                description: item.description
-                    ? item.description.slice(0, 40) + '...'
-                    : 'No description available',
-            });
+    limitedData.forEach(item => {
+      const cardHTML = createCard({
+        image_url: item.image_url,
+        title: item.title.slice(0, 40) + '...',
+        description: item.description
+          ? item.description.slice(0, 40) + '...'
+          : 'No description available',
+      });
 
-            cardContainer.innerHTML += cardHTML;
-        });
+      cardContainer.innerHTML += cardHTML;
+    });
 
-        pageNumber.textContent = `Page ${page}`;
-        news_type.innerHTML = `${categary} news !! `
+    pageNumber.textContent = `Page ${page}`;
+    news_type.innerHTML = `${categary} news !! `
 
-        document.querySelectorAll('.full-news-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-              const index = e.target.dataset.index;
-              showFullNews(globalArticles[index]);
-            });
-          });
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
+    document.querySelectorAll('.full-news-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const index = e.target.dataset.index;
+        console.log(index);
+
+        showFullNews(globalArticles[index]);
+      });
+    });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
 }
 
 prevBtn.addEventListener('click', () => {
-    if (currentPage > 1) {
-        currentPage--;
-        limit -= 8;
-        start -= 9
-        fetchData(currentPage, categary);
-    }
+  if (currentPage > 1) {
+    currentPage--;
+    limit -= 8;
+    start -= 9
+    fetchData(currentPage, categary);
+  }
 });
 
 nextBtn.addEventListener('click', () => {
-    // if (data.articles.length > limit) {
-    currentPage++;
-    limit += 8;
-    start += 9
-    fetchData(currentPage, categary);
-    // }
+  // if (data.articles.length > limit) {
+  currentPage++;
+  limit += 8;
+  start += 9
+  fetchData(currentPage, categary);
+  // }
 });
 
 
 fetchData(currentPage, categary);
 
-setInterval(()=>fetchData(currentPage, categary), 500*60)
+setInterval(() => fetchData(), 500 * 60)
