@@ -522,6 +522,16 @@
       height: calc(var(--spacing) * 64);
     }
   }
+  .lg\:h-\[5\%\] {
+    @media (width >= 64rem) {
+      height: 5%;
+    }
+  }
+  .lg\:h-\[5\] {
+    @media (width >= 64rem) {
+      height: 5;
+    }
+  }
   .lg\:w-\[75\%\] {
     @media (width >= 64rem) {
       width: 75%;
@@ -550,6 +560,11 @@
   .xl\:h-64 {
     @media (width >= 80rem) {
       height: calc(var(--spacing) * 64);
+    }
+  }
+  .xl\:h-\[10\%\] {
+    @media (width >= 80rem) {
+      height: 10%;
     }
   }
   .xl\:w-\[75\%\] {
