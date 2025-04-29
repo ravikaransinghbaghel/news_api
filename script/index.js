@@ -132,4 +132,4 @@ nextBtn.addEventListener('click', () => {
 
 fetchData(currentPage, categary);
 
-setInterval(() => fetchData(), 500 * 60)
+setInterval(() => fetchData(currentPage,categary), 500 * 60)
