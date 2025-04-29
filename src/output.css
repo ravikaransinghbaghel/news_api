@@ -619,6 +619,11 @@
       height: 5;
     }
   }
+  .lg\:h-\[8\%\] {
+    @media (width >= 64rem) {
+      height: 8%;
+    }
+  }
   .lg\:h-\[9\%\] {
     @media (width >= 64rem) {
       height: 9%;

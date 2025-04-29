@@ -103,7 +103,7 @@ async function fetchData(page, categary) {
         const index = e.target.dataset.index;
         console.log(index);
 
-        showFullNews(globalArticles[index]);
+        // showFullNews(globalArticles[index]);
       });
     });
   } catch (error) {
