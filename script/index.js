@@ -10,15 +10,15 @@ const cards = document.querySelector('.cards');
 let currentPage = 1;
 let start = 0;
 let limit = 8;
-let categary = 'general';
+let categary = 'top';
 let globalArticles = [];
 
-const newsdataApi = `https://newsdata.io/api/1/news?apikey=pub_82970d979a51bd670ff1229a01519c5d5df4d&country=in&language=en&category=${categary}`
-const newsApi = `https://newsapi.org/v2/top-headlines?country=us&category=${categary}&apiKey=1cdfe3f998ec403d8a16c6dd118a0254`
+const newsdataApi = (categary) => { return `https://newsdata.io/api/1/news?apikey=pub_82970d979a51bd670ff1229a01519c5d5df4d&country=in&language=en&category=${categary}` }
+const newsApi = (categary) => { return `https://newsapi.org/v2/top-headlines?country=us&category=${categary}&apiKey=1cdfe3f998ec403d8a16c6dd118a0254` }
 
-nav_item.forEach((item) => {
+nav_item.forEach((item, index) => {
   item.addEventListener('click', () => {
-    // console.log('Clicked item index:', index);
+    console.log('Clicked item index:', index);
     // console.log('value:', item.dataset.value);
     categary = item.dataset.value;
     currentPage = 1;
@@ -75,13 +75,13 @@ function showFullNews(item) {
 async function fetchData(page, categary) {
   try {
 
-    const response = await fetch( newsApi);
+    const response = await fetch(newsdataApi(categary));
     const data = await response.json();
     const cardContainer = document.getElementById('card-container');
     console.log(data);
 
     cardContainer.innerHTML = "";
-    const limitedData =  data.articles.slice(start, limit);
+    const limitedData = data.results.slice(start, limit);
     let globalArticles = [];
     globalArticles = limitedData;
 
