@@ -12,20 +12,35 @@
         <link href="./src/index.css" rel="stylesheet">
     </head>
 
-    <body class=" ">
-        <div class="container  w-screen h-screen bg-amber-200 ">
+    <body class="overflow-x-hidden">
+        <div class="w-full h-screen bg-amber-200">
 
             <!-- nav section -->
-            <nav class="w-full h-[10%] lg:h-[5%] xl:h-[10%] bg-blue-600 p-4">
+            <nav class="w-full h-[10%] bg-blue-600 p-4">
                 <div class="flex justify-between items-center">
                     <!-- Logo Section -->
-                    <div class="text-white text-xl font-bold cursor-pointer">
+                    <div class="text-white text-xl font-bold cursor-pointer flex gap-3">
+                        <div class="lg:hidden flex items-center">
+                            <button class="text-white text-3xl" onclick="toggleMobileNav()">☰</button>
+                            <div class="absolute top-12 left-0 w-full bg-blue-600 text-white hidden mobile-nav">
+                                <div data-value="top" class="nav-item px-4 py-2 hover:bg-yellow-300">TOP</div>
+                                <div data-value="business" class="nav-item px-4 py-2 hover:bg-yellow-300">Business</div>
+                                <div data-value="entertainment" class="nav-item px-4 py-2 hover:bg-yellow-300">
+                                    Entertainment</div>
+                                <div data-value="food" class="nav-item px-4 py-2 hover:bg-yellow-300">Food</div>
+                                <div data-value="science" class="nav-item px-4 py-2 hover:bg-yellow-300">Science</div>
+                                <div data-value="sports" class="nav-item px-4 py-2 hover:bg-yellow-300">Sports</div>
+                                <div data-value="technology" class="nav-item px-4 py-2 hover:bg-yellow-300">Technology
+                                </div>
+                                <div data-value="politics" class="nav-item px-4 py-2 hover:bg-yellow-300">Politics</div>
+                                <div data-value="health" class="nav-item px-4 py-2 hover:bg-yellow-300">Health</div>
+                            </div>
+                        </div>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPqEEI_x50vlET-ur5DsLdnNmprdM-L9HTUw&s"
                             alt="logo" class="h-12 rounded-2xl">
                     </div>
 
-                    <!-- Nav Button Section -->
-
+                    <!-- Nav Button Section (Large Screens) -->
                     <div class="hidden lg:flex space-x-7 nav-items">
                         <div data-value="top"
                             class="text-white nav-item hover:text-yellow-300 transition duration-300 cursor-pointer">
@@ -65,17 +80,16 @@
                         </div>
                     </div>
 
-
                     <!-- Search Section -->
                     <div class="relative nav-search">
-                        <input type="text" class="p-2 rounded-full outline-none" placeholder="Search..." />
+                        <input type="text" class="p-2 w-full sm:w-64 rounded-full outline-none"
+                            placeholder="Search..." />
                     </div>
                 </div>
             </nav>
 
-
-            <!-- card section  -->
-            <div class="h-[81%] overflow-y-scroll overflow-x-hidden ">
+            <!-- card section -->
+            <div class="h-[81%] overflow-y-scroll overflow-x-hidden">
                 <div class="card">
                     <h1 class="news-type relative xl:left-24 left-5 mb-4 text-xl font-bold">general news !!</h1>
                     <div id="card-container"
@@ -85,14 +99,13 @@
                             <img src="https://via.placeholder.com/300" alt="Card Image"
                                 class="w-full h-48 object-cover mb-4 rounded-lg">
                             <h3 class="text-lg font-semibold text-gray-800">Card Title</h3>
-                            <p class="text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </p>
+                            <p class="text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                             <button
-                                class=" cursor-pointer w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">Learn
+                                class="cursor-pointer w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">Learn
                                 More</button>
                         </div>
-
                     </div>
+
                     <!-- Pagination buttons -->
                     <div class="flex justify-center items-center space-x-16 my-10">
                         <button id="prevBtn"
@@ -103,7 +116,7 @@
                         <button id="nextBtn"
                             class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition cursor-pointer">
                             Next
-                            <button>
+                        </button>
                     </div>
                 </div>
 
@@ -112,10 +125,20 @@
 
             <!-- footer section -->
             <div class="footer h-[9%] bg-gray-800 flex justify-center">
-                <h1 class=" relative top-5 text-lg text-white ">----- power by @RAVI KARAN ------- </h1>
+                <h1 class="relative top-5 text-sm sm:text-lg text-center text-white">----- powered by @RAVI KARAN
+                    ------- </h1>
             </div>
         </div>
+
         <script src="./script/index.js"></script>
+
+        <script>
+            // Toggle the mobile navigation menu
+            function toggleMobileNav() {
+                const mobileNav = document.querySelector('.mobile-nav');
+                mobileNav.classList.toggle('hidden');
+            }
+        </script>
     </body>
 
 </html>
